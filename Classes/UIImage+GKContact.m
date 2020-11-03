@@ -95,7 +95,7 @@ static inline NSString *GKContactKey(NSString *initials, CGSize size, UIColor *b
     NSDictionary *dict = @{NSFontAttributeName: font, NSForegroundColorAttributeName: textColor};
     CGSize textSize = [initials sizeWithAttributes:dict];
 
-    NSInteger xFactor = [UIApplication sharedApplication].userInterfaceLayoutDirection == UIUserInterfaceLayoutDirectionRightToLeft ? -1 : 1;
+    NSInteger xFactor = [self isDeviceLanguageRTL] ? -1 : 1;
     [initials drawInRect:CGRectMake(xFactor * (r - textSize.width / 2), r - font.lineHeight / 2, textSize.width, textSize.height) withAttributes:dict];
 
     UIImage *image = UIGraphicsGetImageFromCurrentImageContext();
@@ -140,5 +140,8 @@ static inline NSString *GKContactKey(NSString *initials, CGSize size, UIColor *b
     return image;
 }
 
++ (BOOL)isDeviceLanguageRTL {
+   return [NSLocale characterDirectionForLanguage:[[NSLocale currentLocale] objectForKey:NSLocaleLanguageCode]] == NSLocaleLanguageDirectionRightToLeft;
+}
 
 @end
