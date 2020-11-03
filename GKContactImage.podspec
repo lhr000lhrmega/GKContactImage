@@ -1,5 +1,4 @@
-Pod::Spec.new do ,s,
-
+Pod::Spec.new do |s|
   s.name         = "GKContactImage"
   s.version      = "0.0.4"
   s.summary      = "Contact avatar image like Contacts.app"
